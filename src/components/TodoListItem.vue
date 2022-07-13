@@ -2,7 +2,7 @@
   <div class="todo-item">
     <label>
       <input type="checkbox" :checked="todoItem.completed" />
-     {{todoItem.content}}
+     {{ todoItem.content }}
       <span class="check-button"></span>
     </label>
   </div>
@@ -11,7 +11,7 @@
 <script>
 export default {
   name:"TodoListItem",
-  props:["todoItem"]
+  props:["todoItem"],
 };
 </script>
 

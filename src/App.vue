@@ -4,7 +4,7 @@
       <h1>欢迎使用 orange 待办事项</h1>
       <todo-add :tid="todos.length" @add-todo="addTodo"/>
       <todo-filter />
-      <todo-list  :todo="todos"/>
+      <todo-list :todos="todos" />
     </div>
   </main>
 </template>

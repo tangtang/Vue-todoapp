@@ -21,7 +21,7 @@ export default {
     const emitAddTodo = () => {
       const todo = {
         id: props.tid,
-        content: todoContent.value, //要记得value才能访问里面的值
+        content: todoContent.value, //要记得value才能访问ref里面的值
         completed: false,
       };
       context.emit("add-todo", todo);
