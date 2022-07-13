@@ -1,8 +1,11 @@
 <template>
-  <div class="todo-item">
+  <div class="todo-item" :class="{ done: todoItem.completed}">
     <label>
-      <input type="checkbox" :checked="todoItem.completed" />
-     {{ todoItem.content }}
+      <input type="checkbox" 
+      :checked="todoItem.completed"
+      @click="$emit('change-state',$event)" 
+      />
+      {{ todoItem.content }}
       <span class="check-button"></span>
     </label>
   </div>
@@ -10,13 +13,12 @@
 
 <script>
 export default {
-  name:"TodoListItem",
-  props:["todoItem"],
+  name: "TodoListItem",
+  props: ["todoItem"],
 };
 </script>
 
 <style>
-
 .todo-item {
   background: white;
   padding: 16px;
@@ -24,35 +26,40 @@ export default {
   color: #626262;
 }
 
-.todo-item label{
+.todo-item label {
   position: relative;
   display: flex;
   align-items: center;
 }
+/* 给完成的todoitem一个横线的样式 */
+.todo-item.done label {
+  text-decoration: line-through;
+  font-style: italic;
+}
 
-.todo-item label span.check-button{
+.todo-item label span.check-button {
   position: absolute;
   top: 0;
 }
 
 .todo-item label span.check-button::before,
 .todo-item label span.check-button::after {
-content: "";
-display:block;
-position: absolute;
-width: 18px;
-height: 18px;
-border-radius: 50%;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
 }
 
-.todo-item label span.check-button::before{
-  border:1px solid #b382f9;
+.todo-item label span.check-button::before {
+  border: 1px solid #b382f9;
 }
 
 .todo-item label span.check-button::after {
   transform: 0.4s;
   background: #b382f9;
-  transform: translate(1px,1px) scale(0.8);
+  transform: translate(1px, 1px) scale(0.8);
   opacity: 0;
 }
 
@@ -63,4 +70,5 @@ border-radius: 50%;
 
 .todo-item input:checked + span.check-button::after {
   opacity: 1;
-}</style>
+}
+</style>
