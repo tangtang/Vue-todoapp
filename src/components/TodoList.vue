@@ -1,14 +1,19 @@
 <template>
   <div class="todo-list">
-    <todo-list-item v-for="n in 3" :key="n"></todo-list-item>
+    <todo-list-item
+     v-for="todo in todos"
+      :key="todo.id"
+      :todo-item="todo"
+      ></todo-list-item>
   </div>
 </template>
 
 <script>
-import TodoListItem from './TodoListItem';
+import TodoListItem from "./TodoListItem";
 export default {
-  name:"TodoList",
-  components: {TodoListItem},
+  name: "TodoList",
+  components: { TodoListItem },
+  props: ["todos"],
 };
 </script>
 

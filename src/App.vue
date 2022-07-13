@@ -2,21 +2,30 @@
   <main>
     <div class="container">
       <h1>欢迎使用 orange 待办事项</h1>
-      <todo-add />
+      <todo-add :tid="todos.length" @add-todo="addTodo"/>
       <todo-filter />
-      <todo-list />
+      <todo-list  :todo="todos"/>
     </div>
   </main>
 </template>
 
 <script>
+import { ref }  from "vue";
 import TodoAdd from './components/TodoAdd.vue';
 import TodoFilter from './components/TodoFilter.vue';
 import TodoList from './components/TodoList.vue';
 
 export default {
-  components: { TodoAdd, TodoFilter, TodoList },
   name: "App",
+  components: { TodoAdd, TodoFilter, TodoList },
+  setup (){
+    const todos = ref([]);//包装一个空数组，来作为默认todo列表的数据
+    const addTodo = (todo) => todos.value.push(todo);
+    return { //在temp中使用函数和数据，要以对象的新式返回
+      todos,
+      addTodo,
+    };
+  },
 };
 </script>
 
